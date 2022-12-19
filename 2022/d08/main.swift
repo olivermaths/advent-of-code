@@ -6,7 +6,6 @@ enum PuzzleError : Error{
 }
 
 
-
 extension StringProtocol{
     subscript(offset: Int) -> Character {
         self[index(startIndex, offsetBy: offset)]
@@ -92,12 +91,10 @@ do{
     }
 
 
-
     print("puzzle one answer: ", total)
     print("puzzle two answer: ", scores.max()!)
     
 }catch{
     print("could not solve your puzzle")    
-
 }
 
