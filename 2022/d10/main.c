@@ -21,16 +21,24 @@ void rain_memmove(char* dest,const char* src, unsigned long n){
     return;
 }
 
+
+
 void destroy_lines(lines* l){
     if(l == (void*)0) return;
-    if(l->len == 0) free(l);
+    if(l->len == 0) goto free_lines;
 
-    for(long it = (l->len - 1); it >= 0; it--){
+    for(unsigned long it = (l->len - 1); it >= 0; it--){
         free(l->data[it]->data);
         free(l->data[it]);
     };
+    
+free_lines:
     free(l);
+    return;
 }
+
+
+
 
 line* create_line(const char* from, unsigned long n){
     line* new_line = malloc(sizeof(line));
@@ -95,7 +103,8 @@ inline _Bool compare_line(const char* left, const char* right, unsigned int n){
     return 1;
 }
 
-inline unsigned long increase_score(unsigned long cycles, unsigned long reg, unsigned int* crt){
+inline unsigned long increase_score(unsigned long cycles, unsigned long reg, 
+                                    unsigned int* crt){
     unsigned long result = 0;
  
     if(cycles == 20 || cycles%40 == 20){
@@ -125,7 +134,8 @@ inline void draw(unsigned int* crt, unsigned int* reg){
 
 
 
-void solvePuzzleOne(lines *lns){
+void solvePuzzleOne(lines *lns)
+{
     unsigned int reg     = 1;
     unsigned long cycles = 0;
     unsigned long score  = 0;
@@ -160,7 +170,8 @@ void solvePuzzleOne(lines *lns){
 
 
 
-int main(int argc, char** argv){
+int main(int argc, char** argv)
+{
 
     if(argc < 2){
         perror("you should pass a path to a file here");
